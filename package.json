@@ -1,0 +1,27 @@
+{
+  "name": "socialgram",
+  "version": "1.0.0",
+  "description": "Comparte tus fotos con la comunidad",
+  "main": "server.js",
+  "scripts": {
+    "build": "gulp",
+    "start": "gulp watch & node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.2",
+    "materialize-css": "^0.98.0",
+    "page": "^1.7.1",
+    "pug": "^2.0.0-beta11"
+  },
+  "devDependencies": {
+    "babelify": "^7.3.0",
+    "browserify": "^14.1.0",
+    "gulp": "^3.9.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^3.1.0",
+    "vinyl-source-stream": "^1.1.0",
+    "watchify": "^3.9.0"
+  } 
+}
