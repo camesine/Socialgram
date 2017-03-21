@@ -5,7 +5,7 @@ var title = require('title');
 
 page('/signin', function(ctx, next) {
 
-	title("SocialGram - Signin")
+	title("SocialGram - Signin");
 	var main = document.getElementById('main-container');
 	empty(main).appendChild(template);
 
