@@ -7,6 +7,26 @@ page('/', function(ctx, next) {
 
 	title("SocialGram");
 	var main = document.getElementById('main-container');
-	empty(main).appendChild(template);
+
+	var pictures = [{
+		user:{
+			username: 'camello',
+			avatar: 'office.jpg'
+		},
+		url: 'office.jpg',
+		likes:'10',
+		liked:'true'
+	},{
+		user:{
+			username: 'camello',
+			avatar: 'office.jpg'
+		},
+		url: 'office.jpg',
+		likes:'10',
+		liked:'true'
+	}];
+
+
+	empty(main).appendChild(template(pictures));
 
 });
