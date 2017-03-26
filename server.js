@@ -34,7 +34,7 @@ app.get('/api/pictures', function(req, res){
 
 	var pictures = [{
 	user:{
-		username: 'camello',
+		username: 'Bob',
 		avatar: 'office.jpg'
 	},
 	url: 'office.jpg',
@@ -43,7 +43,7 @@ app.get('/api/pictures', function(req, res){
 	creatAt: new Date()
 },{
 	user:{
-		username: 'camello',
+		username: 'Bob',
 		avatar: 'office.jpg'
 	},
 	url: 'office.jpg',
@@ -52,10 +52,7 @@ app.get('/api/pictures', function(req, res){
 	creatAt: new Date().setDate(new Date().getDate() - 10)
 }];
 
-setTimeout(function(){
 	res.send(pictures);
-}, 2000);
-
 });
 
 app.post('/api/pictures', function(req, res){

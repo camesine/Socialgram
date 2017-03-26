@@ -25,7 +25,7 @@ function compile(watch){
 
 	function rebundle(){
 		bundle
-			.transform(babel)
+			.transform(babel, {presets:['es2015']})
 			.bundle()
 			.on('error', function(err){console.log(err); this.emit('end')})
 			.pipe(source('index.js'))
