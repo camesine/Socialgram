@@ -9082,7 +9082,9 @@ module.exports = [
 
 var _templateObject = _taggedTemplateLiteral(['<nav class="header">\n\t<div class="nav-wrapper">\n\t\t<div class="container">\n\t\t\t<div class="row">\n\t\t\t\t<div class="col s12 m6 offset-m1"> \n\t\t\t\t\t<a href="/" class="brand-logo Socialgram">Socialgram</a>\n\t\t\t\t</div>\n\t\t\t\t<div class="col s2 m6 push-s10 push-m10">\n\t\t\t\t\t<a href="#" class="btn btn-large btn-flat dropdown-button" data-activates="drop-user"> \n\t\t\t\t\t\t<i class="fa fa-user" aria-hidden="true"></i>\n\t\t\t\t\t</a>\n\t\t\t\t\t<ul id="drop-user" class="dropdown-content">\n\t\t\t\t\t\t<li> <a href="#">Salir</a> </li>\n\t\t\t\t\t</ul>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n</nav>'], ['<nav class="header">\n\t<div class="nav-wrapper">\n\t\t<div class="container">\n\t\t\t<div class="row">\n\t\t\t\t<div class="col s12 m6 offset-m1"> \n\t\t\t\t\t<a href="/" class="brand-logo Socialgram">Socialgram</a>\n\t\t\t\t</div>\n\t\t\t\t<div class="col s2 m6 push-s10 push-m10">\n\t\t\t\t\t<a href="#" class="btn btn-large btn-flat dropdown-button" data-activates="drop-user"> \n\t\t\t\t\t\t<i class="fa fa-user" aria-hidden="true"></i>\n\t\t\t\t\t</a>\n\t\t\t\t\t<ul id="drop-user" class="dropdown-content">\n\t\t\t\t\t\t<li> <a href="#">Salir</a> </li>\n\t\t\t\t\t</ul>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n</nav>']);
 
-function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+function _taggedTemplateLiteral(strings, raw) {
+	return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } }));
+}
 
 var yo = require('yo-yo');
 var empty = require('empty-element');
@@ -9104,13 +9106,20 @@ var template = require("./template");
 var title = require('title');
 var header = require('../header');
 
-page('/', header, loadPictures, function (ctx, next) {
+page('/', header, loading, loadPictures, function (ctx, next) {
 
 	title("SocialGram");
 	var main = document.getElementById('main-container');
 
 	empty(main).appendChild(template(ctx.pictures));
 });
+
+function loading(ctx, next) {
+	var el = document.createElement('div');
+	el.classList.add('loader');
+	document.getElementById('main-container').appendChild(el);
+	next();
+}
 
 async function loadPictures(ctx, next) {
 	try {
@@ -9128,7 +9137,9 @@ async function loadPictures(ctx, next) {
 
 var _templateObject = _taggedTemplateLiteral(['<div class="container timeline">\n\t<div class="row">\n\t\t<div class="col s12 m10 offset-m1 l8 offset-l2 center-align">\n\t\t\t<form enctype="multipart/form-data" class="form-upload" id="formUpload" onsubmit=', '>\n\t\t\t\t<div id="fileName" class="fileUpload btn btn-flat cyan">\n\t\t\t\t\t<span><i class="fa fa-camera" aria-hidden="true"></i> Subir imagen</span>\n\t\t\t\t\t<input name="picture" id="file" type="file" class="upload" onchange=', ' />\n\t\t\t\t</div>\n\t\t\t\t<button id="btnUpload" type="submit" class="btn btn-flat cyan hide">Subir</button>\n\t\t\t\t<button id="btnCancel" type="button" class="btn btn-flat red hide" onclick=', '><i class="fa fa-times"></i></button>\n\t\t\t</form>\n\t\t</div>\n\t</div>\n\t<div class="row">\n \t\t<div class="col s12 m10 offset-m1 l6 offset-l3">\n \t\t\t', '\n \t\t</div>\n\t</div>\n\n</div>'], ['<div class="container timeline">\n\t<div class="row">\n\t\t<div class="col s12 m10 offset-m1 l8 offset-l2 center-align">\n\t\t\t<form enctype="multipart/form-data" class="form-upload" id="formUpload" onsubmit=', '>\n\t\t\t\t<div id="fileName" class="fileUpload btn btn-flat cyan">\n\t\t\t\t\t<span><i class="fa fa-camera" aria-hidden="true"></i> Subir imagen</span>\n\t\t\t\t\t<input name="picture" id="file" type="file" class="upload" onchange=', ' />\n\t\t\t\t</div>\n\t\t\t\t<button id="btnUpload" type="submit" class="btn btn-flat cyan hide">Subir</button>\n\t\t\t\t<button id="btnCancel" type="button" class="btn btn-flat red hide" onclick=', '><i class="fa fa-times"></i></button>\n\t\t\t</form>\n\t\t</div>\n\t</div>\n\t<div class="row">\n \t\t<div class="col s12 m10 offset-m1 l6 offset-l3">\n \t\t\t', '\n \t\t</div>\n\t</div>\n\n</div>']);
 
-function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+function _taggedTemplateLiteral(strings, raw) {
+	return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } }));
+}
 
 var yo = require('yo-yo');
 var layout = require('../layout');
@@ -9190,7 +9201,9 @@ page();
 
 var _templateObject = _taggedTemplateLiteral(['<div class="container landing">\n\t\t\t<div class="row">\n\t\t\t\t<div class="col-s10 push-s1">\n\t\t\t\t\t<div class="row">\n\t\t\t\t\t\t<div class="col m5 hide-on-small-only">\n\t\t\t\t\t\t\t<img src="iphone.png" class="iphone">\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t', '\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>'], ['<div class="container landing">\n\t\t\t<div class="row">\n\t\t\t\t<div class="col-s10 push-s1">\n\t\t\t\t\t<div class="row">\n\t\t\t\t\t\t<div class="col m5 hide-on-small-only">\n\t\t\t\t\t\t\t<img src="iphone.png" class="iphone">\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t', '\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>']);
 
-function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+function _taggedTemplateLiteral(strings, raw) {
+	return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } }));
+}
 
 var yo = require('yo-yo');
 
@@ -9203,7 +9216,9 @@ module.exports = function landing(box) {
 
 var _templateObject = _taggedTemplateLiteral(['<div class="content"> \n\t', '\n\t</div>'], ['<div class="content"> \n\t', '\n\t</div>']);
 
-function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+function _taggedTemplateLiteral(strings, raw) {
+	return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } }));
+}
 
 var yo = require('yo-yo');
 
@@ -9216,7 +9231,9 @@ module.exports = function layout(content) {
 
 var _templateObject = _taggedTemplateLiteral(['<div class="card ', '" >\n\t\t<div class="card-image">\n\t\t\t\t<img class="activator" src="', '">\n\t\t</div>\n\t\t<div class="card-content">\n\t\t\t<a href="/', '" class="card-title">\n\t\t\t\t<img src="', '" class="avatar" />\n\t\t\t\t<span class="username">', '</span>\n\t\t\t</a>\n\t\t\t<small class="right time">', '</small>\n\t\t\t<p>\n\t\t\t\t<a class="left" href="#" onclick=', '><i class="fa fa-heart-o" aria-hidden="true"></i></a>\n\t\t\t\t<a class="left" href="#" onclick=', '><i class="fa fa-heart" aria-hidden="true"></i></a>\n\t\t\t\t<span class="left likes">', ' me gusta</span> \n\t\t\t</p>\n\t\t</div>\n\t</div>'], ['<div class="card ', '" >\n\t\t<div class="card-image">\n\t\t\t\t<img class="activator" src="', '">\n\t\t</div>\n\t\t<div class="card-content">\n\t\t\t<a href="/', '" class="card-title">\n\t\t\t\t<img src="', '" class="avatar" />\n\t\t\t\t<span class="username">', '</span>\n\t\t\t</a>\n\t\t\t<small class="right time">', '</small>\n\t\t\t<p>\n\t\t\t\t<a class="left" href="#" onclick=', '><i class="fa fa-heart-o" aria-hidden="true"></i></a>\n\t\t\t\t<a class="left" href="#" onclick=', '><i class="fa fa-heart" aria-hidden="true"></i></a>\n\t\t\t\t<span class="left likes">', ' me gusta</span> \n\t\t\t</p>\n\t\t</div>\n\t</div>']);
 
-function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+function _taggedTemplateLiteral(strings, raw) {
+	return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } }));
+}
 
 var yo = require('yo-yo');
 var moment = require('moment');
@@ -9261,7 +9278,9 @@ page('/signin', function (ctx, next) {
 
 var _templateObject = _taggedTemplateLiteral(['<div class="col s12 m7">\n\t\t\t\t\t\t\t<div class="row">\n\t\t\t\t\t\t\t\t<div class="signup-box">\n\t\t\t\t\t\t\t\t\t<h1 class="SocialGram">SocialGram</h1>\n\t\t\t\t\t\t\t\t\t<form class="signup-form">\n\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t<div class="section">\n\t\t\t\t\t\t\t\t\t\t\t<a class="btn btn-fb hide-on-small-only"><i class="fa fa-facebook-official" aria-hidden="true"></i> Iniciar sesion con facebook</a>\n\t\t\t\t\t\t\t\t\t\t\t<a class="btn btn-fb hide-on-med-and-up">Iniciar sesion</a>\n\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t<div class="divider"></div>\n\t\t\t\t\t\t\t\t\t\t<div class="section">\n\t\t\t\t\t\t\t\t\t\t\t<input type="text" name="username" placeholder="Nombre de usuario">\n\t\t\t\t\t\t\t\t\t\t\t<input type="password" name="password" placeholder="**********">\n\t\t\t\t\t\t\t\t\t\t\t<button class="btn weavs-effect waver-light btn-signup" type="submit">Inicia sesion</button>\n\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t</form>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t<div class="row">\n\t\t\t\t\t\t\t\t<div class="login-box">\n\t\t\t\t\t\t\t\t\tNo tienes una cuenta? <a href="/signup">Registrate</a>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t</div>'], ['<div class="col s12 m7">\n\t\t\t\t\t\t\t<div class="row">\n\t\t\t\t\t\t\t\t<div class="signup-box">\n\t\t\t\t\t\t\t\t\t<h1 class="SocialGram">SocialGram</h1>\n\t\t\t\t\t\t\t\t\t<form class="signup-form">\n\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t<div class="section">\n\t\t\t\t\t\t\t\t\t\t\t<a class="btn btn-fb hide-on-small-only"><i class="fa fa-facebook-official" aria-hidden="true"></i> Iniciar sesion con facebook</a>\n\t\t\t\t\t\t\t\t\t\t\t<a class="btn btn-fb hide-on-med-and-up">Iniciar sesion</a>\n\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t<div class="divider"></div>\n\t\t\t\t\t\t\t\t\t\t<div class="section">\n\t\t\t\t\t\t\t\t\t\t\t<input type="text" name="username" placeholder="Nombre de usuario">\n\t\t\t\t\t\t\t\t\t\t\t<input type="password" name="password" placeholder="**********">\n\t\t\t\t\t\t\t\t\t\t\t<button class="btn weavs-effect waver-light btn-signup" type="submit">Inicia sesion</button>\n\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t</form>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t<div class="row">\n\t\t\t\t\t\t\t\t<div class="login-box">\n\t\t\t\t\t\t\t\t\tNo tienes una cuenta? <a href="/signup">Registrate</a>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t</div>']);
 
-function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+function _taggedTemplateLiteral(strings, raw) {
+  return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } }));
+}
 
 var yo = require('yo-yo');
 var landing = require('../landing');
@@ -9291,7 +9310,9 @@ page('/signup', function (ctx, next) {
 
 var _templateObject = _taggedTemplateLiteral(['<div class="col s12 m7">\n\t\t\t\t\t\t\t<div class="row">\n\t\t\t\t\t\t\t\t<div class="signup-box">\n\t\t\t\t\t\t\t\t\t<h1 class="SocialGram">SocialGram</h1>\n\t\t\t\t\t\t\t\t\t<form class="signup-form">\n\t\t\t\t\t\t\t\t\t\t<h2>Registrate para ver fotos de tus amigos</h2>\n\t\t\t\t\t\t\t\t\t\t<div class="section">\n\t\t\t\t\t\t\t\t\t\t\t<a class="btn btn-fb hide-on-small-only"><i class="fa fa-facebook-official" aria-hidden="true"></i> Iniciar sesion con facebook</a>\n\t\t\t\t\t\t\t\t\t\t\t<a class="btn btn-fb hide-on-med-and-up">Iniciar sesion</a>\n\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t<div class="divider"></div>\n\t\t\t\t\t\t\t\t\t\t<div class="section">\n\t\t\t\t\t\t\t\t\t\t\t<input type="email" name="email" placeholder="Correo electronico">\n\t\t\t\t\t\t\t\t\t\t\t<input type="text" name="name" placeholder="Nombre completo">\n\t\t\t\t\t\t\t\t\t\t\t<input type="text" name="username" placeholder="Nombre de usuario">\n\t\t\t\t\t\t\t\t\t\t\t<input type="password" name="password" placeholder="**********">\n\t\t\t\t\t\t\t\t\t\t\t<button class="btn weavs-effect waver-light btn-signup" type="submit">Registrarse</button>\n\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t</form>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t<div class="row">\n\t\t\t\t\t\t\t\t<div class="login-box">\n\t\t\t\t\t\t\t\t\t\xBFTienes una cuenta? <a href="/signin">Entrar</a>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t</div>'], ['<div class="col s12 m7">\n\t\t\t\t\t\t\t<div class="row">\n\t\t\t\t\t\t\t\t<div class="signup-box">\n\t\t\t\t\t\t\t\t\t<h1 class="SocialGram">SocialGram</h1>\n\t\t\t\t\t\t\t\t\t<form class="signup-form">\n\t\t\t\t\t\t\t\t\t\t<h2>Registrate para ver fotos de tus amigos</h2>\n\t\t\t\t\t\t\t\t\t\t<div class="section">\n\t\t\t\t\t\t\t\t\t\t\t<a class="btn btn-fb hide-on-small-only"><i class="fa fa-facebook-official" aria-hidden="true"></i> Iniciar sesion con facebook</a>\n\t\t\t\t\t\t\t\t\t\t\t<a class="btn btn-fb hide-on-med-and-up">Iniciar sesion</a>\n\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t\t<div class="divider"></div>\n\t\t\t\t\t\t\t\t\t\t<div class="section">\n\t\t\t\t\t\t\t\t\t\t\t<input type="email" name="email" placeholder="Correo electronico">\n\t\t\t\t\t\t\t\t\t\t\t<input type="text" name="name" placeholder="Nombre completo">\n\t\t\t\t\t\t\t\t\t\t\t<input type="text" name="username" placeholder="Nombre de usuario">\n\t\t\t\t\t\t\t\t\t\t\t<input type="password" name="password" placeholder="**********">\n\t\t\t\t\t\t\t\t\t\t\t<button class="btn weavs-effect waver-light btn-signup" type="submit">Registrarse</button>\n\t\t\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t\t\t</form>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t<div class="row">\n\t\t\t\t\t\t\t\t<div class="login-box">\n\t\t\t\t\t\t\t\t\t\xBFTienes una cuenta? <a href="/signin">Entrar</a>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t</div>']);
 
-function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+function _taggedTemplateLiteral(strings, raw) {
+  return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } }));
+}
 
 var yo = require('yo-yo');
 var landing = require('../landing');
@@ -9323,14 +9344,36 @@ var _template = require('./template');
 
 var _template2 = _interopRequireDefault(_template);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault(obj) {
+	return obj && obj.__esModule ? obj : { default: obj };
+}
 
-(0, _page2.default)('/:username', _header2.default, function (ctx, next) {
+(0, _page2.default)('/:username', loadUser, _header2.default, function (ctx, next) {
 	var main = document.getElementById('main-container');
 	(0, _title2.default)('Socialgram - ' + ctx.params.username);
 
-	(0, _emptyElement2.default)(main).appendChild((0, _template2.default)(ctx.params.username));
+	(0, _emptyElement2.default)(main).appendChild((0, _template2.default)(ctx.user));
 });
+
+(0, _page2.default)('/:username/:id', loadUser, _header2.default, function (ctx, next) {
+	var main = document.getElementById('main-container');
+	(0, _title2.default)('Socialgram - ' + ctx.params.username);
+	(0, _emptyElement2.default)(main).appendChild((0, _template2.default)(ctx.user));
+	console.log(ctx.params.id);
+	$('.modal').modal();
+	$('#modal' + ctx.params.id).modal('open');
+});
+
+async function loadUser(ctx, next) {
+	try {
+		ctx.user = await fetch('/api/user/' + ctx.params.username).then(function (res) {
+			return res.json();
+		});
+		next();
+	} catch (err) {
+		console.log(err);
+	}
+}
 
 },{"../header":27,"./template":39,"empty-element":4,"page":14,"title":24}],39:[function(require,module,exports){
 'use strict';
@@ -9339,7 +9382,8 @@ Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 
-var _templateObject = _taggedTemplateLiteral(['<div class="container user-page">\n\t\t<div class="row">\n\t\t\t<div class="col s12 m10 offset-m1 l8 offset-l2 center-align heading">\n\t\t\t\t<div class="row">\n\t\t\t\t\t<div class="col s12 m10 offset-m1 l3 offset-l3 center">\n\t\t\t\t\t\t<img src="https://www.lastlevel.es/distribucion/images/prod/big/act117/mochila-cuadrada-bob-esponja-colegio-superventas.jpg" class="responsive-img circle" />\n\t\t\t\t\t</div>\n\t\t\t\t\t<div class="col s12 m10 offset-m1 l6 left-align">\n\t\t\t\t\t\t<h2 class="hide-on-large-only center-align">', '</h2>\n\t\t\t\t\t\t<h2 class="hide-on-med-and-down left-align">', '</h2>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t</div>'], ['<div class="container user-page">\n\t\t<div class="row">\n\t\t\t<div class="col s12 m10 offset-m1 l8 offset-l2 center-align heading">\n\t\t\t\t<div class="row">\n\t\t\t\t\t<div class="col s12 m10 offset-m1 l3 offset-l3 center">\n\t\t\t\t\t\t<img src="https://www.lastlevel.es/distribucion/images/prod/big/act117/mochila-cuadrada-bob-esponja-colegio-superventas.jpg" class="responsive-img circle" />\n\t\t\t\t\t</div>\n\t\t\t\t\t<div class="col s12 m10 offset-m1 l6 left-align">\n\t\t\t\t\t\t<h2 class="hide-on-large-only center-align">', '</h2>\n\t\t\t\t\t\t<h2 class="hide-on-med-and-down left-align">', '</h2>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t</div>']);
+var _templateObject = _taggedTemplateLiteral(['<div class="container user-page">\n\t\t<div class="row">\n\t\t\t<div class="col s12 m10 offset-m1 l8 offset-l2 center-align heading">\n\t\t\t\t<div class="row">\n\t\t\t\t\t<div class="col s12 m10 offset-m1 l3 offset-l3 center">\n\t\t\t\t\t\t<img src="', '" class="responsive-img circle" />\n\t\t\t\t\t</div>\n\t\t\t\t\t<div class="col s12 m10 offset-m1 l6 left-align">\n\t\t\t\t\t\t<h2 class="hide-on-large-only center-align">', '</h2>\n\t\t\t\t\t\t<h2 class="hide-on-med-and-down left-align">', '</h2>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t\t<div class="row">\n\t\t\t\t', '\n\t\t\t</div>\n\t\t</div>\n\t</div>'], ['<div class="container user-page">\n\t\t<div class="row">\n\t\t\t<div class="col s12 m10 offset-m1 l8 offset-l2 center-align heading">\n\t\t\t\t<div class="row">\n\t\t\t\t\t<div class="col s12 m10 offset-m1 l3 offset-l3 center">\n\t\t\t\t\t\t<img src="', '" class="responsive-img circle" />\n\t\t\t\t\t</div>\n\t\t\t\t\t<div class="col s12 m10 offset-m1 l6 left-align">\n\t\t\t\t\t\t<h2 class="hide-on-large-only center-align">', '</h2>\n\t\t\t\t\t\t<h2 class="hide-on-med-and-down left-align">', '</h2>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t\t<div class="row">\n\t\t\t\t', '\n\t\t\t</div>\n\t\t</div>\n\t</div>']),
+    _templateObject2 = _taggedTemplateLiteral(['<div class="col s12 m6 l4"> \n\t\t\t\t\t\t<a href="/', '/', '"  class="picture-container">\n\t\t\t\t\t\t\t<img src="', '" class="picture" />\n\t\t\t\t\t\t\t<div class="likes"><i class="fa fa-heart"></i>', '</div>\n\t\t\t\t\t\t</a>\n\t\t\t\t\t\t\t  <div id="modal', '" class="modal modal-fixed-footer">\n\t\t\t\t\t\t\t    <div class="modal-content">\n\t\t\t\t\t\t\t\t\t<img src="', '" />\n\t\t\t\t\t\t\t    </div>\n\t\t\t\t\t\t\t    <div class="modal-footer">\n\t\t\t\t\t\t\t      <div class="btn btn-flat likes">\n\t\t\t\t\t\t\t      \t<i class="fa fa-heart"></i> ', '\n\t\t\t\t\t\t\t      </div>\n\t\t\t\t\t\t\t    </div>\n\t\t\t\t\t\t\t  </div>\n\t\t\t\t\t\t\t          \n\t\t\t\t\t</div>'], ['<div class="col s12 m6 l4"> \n\t\t\t\t\t\t<a href="/', '/', '"  class="picture-container">\n\t\t\t\t\t\t\t<img src="', '" class="picture" />\n\t\t\t\t\t\t\t<div class="likes"><i class="fa fa-heart"></i>', '</div>\n\t\t\t\t\t\t</a>\n\t\t\t\t\t\t\t  <div id="modal', '" class="modal modal-fixed-footer">\n\t\t\t\t\t\t\t    <div class="modal-content">\n\t\t\t\t\t\t\t\t\t<img src="', '" />\n\t\t\t\t\t\t\t    </div>\n\t\t\t\t\t\t\t    <div class="modal-footer">\n\t\t\t\t\t\t\t      <div class="btn btn-flat likes">\n\t\t\t\t\t\t\t      \t<i class="fa fa-heart"></i> ', '\n\t\t\t\t\t\t\t      </div>\n\t\t\t\t\t\t\t    </div>\n\t\t\t\t\t\t\t  </div>\n\t\t\t\t\t\t\t          \n\t\t\t\t\t</div>']);
 
 exports.default = userPageTemplate;
 
@@ -9351,12 +9395,18 @@ var _layout = require('../layout');
 
 var _layout2 = _interopRequireDefault(_layout);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault(obj) {
+	return obj && obj.__esModule ? obj : { default: obj };
+}
 
-function _taggedTemplateLiteral(strings, raw) { return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+function _taggedTemplateLiteral(strings, raw) {
+	return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } }));
+}
 
-function userPageTemplate(username) {
-	var el = (0, _yoYo2.default)(_templateObject, username, username);
+function userPageTemplate(user) {
+	var el = (0, _yoYo2.default)(_templateObject, user.avatar, user.username, user.username, user.pictures.map(function (picture) {
+		return (0, _yoYo2.default)(_templateObject2, user.username, picture.id, picture.src, picture.likes, picture.id, picture.src, picture.likes);
+	}));
 
 	return (0, _layout2.default)(el);
 }

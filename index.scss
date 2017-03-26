@@ -1,6 +1,7 @@
 $secondary-color: #125688;
 
 @import "node_modules/materialize-css/sass/materialize.scss";
+@import "./loader";
 
 @mixin prefix($property, $value, $vendors: webkit moz ms o) {
   @if $vendors {
@@ -209,5 +210,17 @@ $avatar-size: 40px;
       margin-right: 8px;
       display: inline-block;
     }
+  }
+}
+
+
+.modal {
+  img {
+    max-height: 100%;
+    max-width: 90%;
+  }
+
+  .fa-heart {
+    display: inline-block;
   }
 }

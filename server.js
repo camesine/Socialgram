@@ -52,7 +52,10 @@ app.get('/api/pictures', function(req, res){
 	creatAt: new Date().setDate(new Date().getDate() - 10)
 }];
 
+setTimeout(function(){		
 	res.send(pictures);
+}, 2000);
+
 });
 
 app.post('/api/pictures', function(req, res){
@@ -64,6 +67,49 @@ app.post('/api/pictures', function(req, res){
 		}
 	})
 })
+
+app.get('/api/user/:username', (req, res) => {
+	const user = {
+		username: 'Bob',
+		avatar : 'https://www.lastlevel.es/distribucion/images/prod/big/act117/mochila-cuadrada-bob-esponja-colegio-superventas.jpg',
+		pictures: [
+			{
+				id: 1,
+				src: 'https://www.lastlevel.es/distribucion/images/prod/big/act117/mochila-cuadrada-bob-esponja-colegio-superventas.jpg',
+				likes: 3,
+
+			},
+			{
+				id: 2,
+				src: 'https://www.lastlevel.es/distribucion/images/prod/big/act117/mochila-cuadrada-bob-esponja-colegio-superventas.jpg',
+				likes: 7,
+				
+			},
+			{
+				id: 3,
+				src: 'https://www.lastlevel.es/distribucion/images/prod/big/act117/mochila-cuadrada-bob-esponja-colegio-superventas.jpg',
+				likes: 9,
+				
+			},
+			{
+				id: 4,
+				src: 'https://www.lastlevel.es/distribucion/images/prod/big/act117/mochila-cuadrada-bob-esponja-colegio-superventas.jpg',
+				likes: 90,
+				
+			}
+		]
+	}
+	res.send(user);
+});
+
+app.get('/:username', (req, res) => {
+	res.render('index', {title: `Socialgram - ${req.params.username}`});
+});
+
+app.get('/:username/:id', (req, res) => {
+	res.render('index', {title: `Socialgram - ${req.params.username}`});
+});
+
 
 app.listen(8000, function(err){
 	if(err) return console.log(err), process.exit(1);
