@@ -6,26 +6,36 @@ const Db = require('../')
 const r = require('rethinkdb')
 const fixtures = require('./fixtures')
 
-const dbName = `socialgram_${uuid.v4()}`
-const db = new Db({ db: dbName })
 
+test.beforeEach('setup database', async t => {
 
-test.before('setup database', async t => {
+	const dbName = `socialgram_${uuid.v4()}`
+	const db = new Db({ db: dbName })
+
 	await db.connect()
+	t.context.db = db
+	t.context.dbName = dbName
 	t.true(db.connected, 'should be connected')
+
 })
 
-test.after('disconnect database', async t => {
+
+test.afterEach.always('cleanup database', async t => {
+	let db = t.context.db
+	let dbName = t.context.dbName
+
 	await db.disconnect()
 	t.false(db.connected, 'should be disconnected')
-})
 
-test.after.always('cleanup database', async t => {
 	let conn = await r.connect({})
 	await r.dbDrop(dbName).run(conn)
 })
 
+
 test('save image', async t => {
+	let db = t.context.db
+	let dbName = t.context.dbName
+	
 	t.is(typeof db.saveImage, 'function', 'saveImage is function')
 
 	let image = fixtures.getImage()
@@ -44,6 +54,9 @@ test('save image', async t => {
 })
 
 test('like image', async t => {
+	let db = t.context.db
+	let dbName = t.context.dbName
+
 	t.is(typeof db.likeImage, 'function', 'like image should be function')
 	
 	let image = fixtures.getImage()
@@ -56,6 +69,9 @@ test('like image', async t => {
 })
 
 test('get image', async t => {
+	let db = t.context.db
+	let dbName = t.context.dbName
+
 	t.is(typeof db.getImage, 'function', 'getImage is a function')
 
 	let image = fixtures.getImage()
@@ -63,5 +79,19 @@ test('get image', async t => {
 	let result = await db.getImage(create.public_id)
 
 	t.deepEqual(create, result)
+
+})
+
+test('list all images', async t => {
+	let db = t.context.db
+	let dbName = t.context.dbName
+
+	let images = fixtures.getImages(3)
+	let saveImages = images.map(img => db.saveImage(img))
+	let created = await Promise.all(saveImages)
+
+	let result = await db.getImages()
+
+	t.is(created.length, result.length)	
 
 })
