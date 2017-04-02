@@ -10,5 +10,10 @@
   "license": "ISC",
   "devDependencies": {
     "ava": "^0.18.2"
+  },
+  "dependencies": {
+    "bluebird": "^3.5.0",
+    "co": "^4.6.0",
+    "rethinkdb": "^2.3.3"
   }
 }
