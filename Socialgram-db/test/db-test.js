@@ -49,9 +49,19 @@ test('like image', async t => {
 	let image = fixtures.getImage()
 	let create = await db.saveImage(image)
 	let result = await db.likeImage(create.public_id)
-	console.log('paasa1')
-	
+
 	t.true(result.liked)
 	t.is(result.likes, image.likes + 1)
+
+})
+
+test('get image', async t => {
+	t.is(typeof db.getImage, 'function', 'getImage is a function')
+
+	let image = fixtures.getImage()
+	let create = await db.saveImage(image)
+	let result = await db.getImage(create.public_id)
+
+	t.deepEqual(create, result)
 
 })
