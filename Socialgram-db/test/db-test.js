@@ -80,6 +80,7 @@ test('get image', async t => {
 
 	t.deepEqual(create, result)
 
+	t.throws(db.getImage('foo'), /not found/)
 })
 
 test('list all images', async t => {
@@ -128,6 +129,8 @@ test('get user', async t => {
 
 	t.deepEqual(created, result)
 
+	t.throws(db.getUser('foo'), /not found/)
+
 })
 
 
@@ -146,5 +149,8 @@ test('authenticate user', async t => {
 
 	let fail = await db.authenticate(user.username, 'foo')
 	t.false(fail)
+
+	let failure = await db.authenticate('bar', 'foo')
+	t.false(failure)
 
 })
