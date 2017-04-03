@@ -19,12 +19,12 @@ const fixtures = {
 		}
 		return images
 	},
-	getUser(){
+	getUser () {
 		return {
 			name: 'A random user',
-			username : `user_${uuid.v4()}`,
+			username: `user_${uuid.v4()}`,
 			password: uuid.uuid(),
-			email: `${uuid.v4}@socialgram.test`
+			email: `${uuid.v4()}@socialgram.test`
 		}
 	}
 
