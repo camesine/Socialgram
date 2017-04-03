@@ -232,6 +232,33 @@ class Db{
 
 
 
+	authenticate(username, password, callback){
+		if (!this.connected)
+			return Promise.reject(new Error('not connected')).asCallback(callback)
+
+		let connection = this.connection
+		let db = this.db
+
+		let getUser = this.getUser.bind(this) 
+		
+		let tasks = co.wrap(function * (){
+			let conn = yield connection
+			
+			let user = yield getUser(username)
+
+			if(user.password === utils.encrypt(password)){
+				return Promise.resolve(true)
+			}
+
+			return Promise.resolve(false)
+			
+		})
+
+		return Promise.resolve(tasks()).asCallback(callback)
+	}
+
+
+
 
 }
 
