@@ -19,6 +19,7 @@ class Db{
 		this.host = options.host || defaults.host
 		this.port = options.port || defaults.port
 		this.db = options.db || defaults.db
+		this.setup = options.setup || false
 	}
 
 
@@ -32,6 +33,10 @@ class Db{
 
 		let db = this.db
 		let connection = this.connection
+
+		if(!this.setup){
+			return Promise.resolve(connection).asCallback(callback)
+		}
 
 		let setup = co.wrap(function * (){
 			let conn = yield connection
@@ -302,6 +307,31 @@ class Db{
 	}
 
 
+	getImageByTag (tag, callback) {
+		if (!this.connected) {
+			return Promise.reject(new Error('not connected')).asCallback(callback)
+		}
+
+		let connection = this.connection
+		let db = this.db
+		tag = utils.normalize(tag)
+
+		let tasks = co.wrap(function * () {
+			let conn = yield connection
+
+			yield r.db(db).table('images').indexWait().run(conn)
+	
+			let images = yield r.db(db).table('images').filter((img) => {
+				return img('tags').contains(tag)
+			}).orderBy(r.desc('createdAt')).run(conn)
+
+			let result = yield images.toArray()
+
+			return Promise.resolve(result)
+		})
+
+		return Promise.resolve(tasks()).asCallback(callback)
+	}
 
 
 }

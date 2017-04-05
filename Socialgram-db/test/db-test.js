@@ -10,7 +10,7 @@ const utils = require('../lib/utils')
 test.beforeEach('setup database', async t => {
 
 	const dbName = `socialgram_${uuid.v4()}`
-	const db = new Db({ db: dbName })
+	const db = new Db({ db: dbName, setup : true })
 
 	await db.connect()
 	t.context.db = db
@@ -180,4 +180,33 @@ test('list images by user', async t => {
 
 	let result = await db.getImageByUser(userId)
 	t.is(result.length, random)
+})
+
+
+
+test('list images by tag', async t => {
+	let db = t.context.db
+
+	t.is(typeof db.getImageByTag, 'function', 'getImageByTag is function')
+
+	let images = fixtures.getImages(10)
+	let tag = '#filterit'
+	let random = Math.round(Math.random() * images.length)
+
+	let saveImages = []
+	
+	for (let i = 0; i < images.length; i++) {
+		if (i < random) {
+			images[i].description = tag
+		}
+
+		saveImages.push(db.saveImage(images[i]))
+	}
+
+	await Promise.all(saveImages)
+
+	let result = await db.getImageByTag(tag)
+	
+	t.is(result.length, random)
+
 })
