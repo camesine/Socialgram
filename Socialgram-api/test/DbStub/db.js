@@ -45,4 +45,6 @@ module.exports = class Db {
 	authenticate () {
 		return Promise.resolve(true)
 	}
+
+	
 }

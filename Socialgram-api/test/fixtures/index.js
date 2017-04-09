@@ -30,7 +30,7 @@ module.exports = {
 			id: '6a238b19-3ee3-4d5c-acb5-944a3c1fb407',
 			name: 'name',
 			username: 'nametor',
-			email: 'a@platzi.com',
+			email: 'a@socialgram.com',
 			password: 'pl4tzi',
 			createdAt: new Date().toString()
 		}
