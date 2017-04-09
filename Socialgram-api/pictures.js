@@ -1,6 +1,7 @@
 'use strict'
 
 const send = require('micro').send
+const json = require('micro').json
 const Db = require('socialgram')
 const HttpHash = require('http-hash')
 const hash = HttpHash()
@@ -15,16 +16,49 @@ if (env === 'test') {
 }
 
 hash.set('GET /:id', async function getPicture (req, res, params) {
-	// send(res, 200, params)
 	let id = params.id
 	await db.connect()
 	let image = await db.getImage(id)
-	
 	await db.disconnect()
 	send(res, 200, image)
 })
 
- 
+
+hash.set('POST /', async function postPicture (req, res, params) {
+	let image = await json(req)
+	await db.connect()
+	let created = await db.saveImage(image)
+	await db.disconnect()
+	send(res, 201, created)
+})
+
+
+hash.set('POST /:id/like', async function likePicture (req, res, params) {
+	let id = params.id
+	await db.connect
+	let image = await db.likePicture(id)
+	await db.disconnect()
+	send(res, 200, image)
+})
+
+
+hash.set('GET /list', async function list (req, res, params) {
+	await db.connect()
+	let images = await db.getImages()
+	await db.disconnect()
+	send(res, 200, images)
+})
+
+
+hash.set('GET /tag/:tag', async function getPicture (req, res, params) {
+	let tag = params.tag
+	await db.connect()
+	let images = await db.getImagesByTag(tag)
+	await db.disconnect()
+	send(res, 200, images)
+})
+
+
 module.exports =  async function main (req, res) {
 	
 	let { method, url } = req
