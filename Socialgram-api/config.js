@@ -1,3 +1,4 @@
 module.exports = {
-  db: {}
+  db: {},
+  secret: process.env.SOCIALGRAM_SECRET || 'socialgram'
 }
